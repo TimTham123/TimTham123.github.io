@@ -3,66 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Logos</title>
+    <title>Company Circles</title>
     <style>
         body {
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            position: relative;
         }
+        .container {
+            position: relative;
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .large {
+            width: 70%;
+            height: 70%;
+            background-color: yellow;
+        }
+        .medium {
+            width: 50%;
+            height: 50%;
+            background-color: orange;
+        }
+        .small {
+            width: 30%;
+            height: 30%;
+            background-color: red;
+        }
+        .label {
+            position: absolute;
+            top: -20px;
+            font-weight: bold;
+        }
+        .half {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .left { left: 0; background-color: rgba(0, 0, 0, 0.1); }
+        .right { right: 0; background-color: rgba(0, 0, 0, 0.2); }
         .logo {
             position: absolute;
-            width: 80px;
-            height: auto;
-            cursor: pointer;
+            width: 50px;
+            height: 50px;
         }
         .tooltip {
             position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
+            background-color: white;
+            padding: 5px;
+            border: 1px solid black;
             display: none;
-            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div id="container"></div>
+    <div class="half left">Sound</div>
+    <div class="half right">Games</div>
+    <div class="container">
+        <div class="circle large">
+            <div class="label">Global</div>
+            <div class="circle medium">
+                <div class="label">National</div>
+                <div class="circle small">
+                    <div class="label">Local</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        const companies = [
-            { name: "Company A", img: "logo1.png", description: "Company A specializes in tech solutions." },
-            { name: "Company B", img: "logo2.png", description: "Company B focuses on renewable energy." },
-            { name: "Company C", img: "logo3.png", description: "Company C is a leader in AI research." }
-        ];
-
-        const container = document.getElementById("container");
-        companies.forEach(company => {
-            let logo = document.createElement("img");
-            logo.src = company.img;
-            logo.alt = company.name;
-            logo.className = "logo";
-            logo.style.left = Math.random() * (window.innerWidth - 100) + "px";
-            logo.style.top = Math.random() * (window.innerHeight - 100) + "px";
-            
-            let tooltip = document.createElement("div");
-            tooltip.className = "tooltip";
-            tooltip.innerText = company.description;
-            document.body.appendChild(tooltip);
-            
-            logo.addEventListener("mouseenter", (e) => {
-                tooltip.style.display = "block";
-                tooltip.style.left = e.pageX + 10 + "px";
-                tooltip.style.top = e.pageY + 10 + "px";
+        document.querySelectorAll('.logo').forEach(logo => {
+            logo.addEventListener('mouseenter', function() {
+                let tooltip = document.createElement('div');
+                tooltip.classList.add('tooltip');
+                tooltip.innerText = this.getAttribute('data-description');
+                document.body.appendChild(tooltip);
+                let rect = this.getBoundingClientRect();
+                tooltip.style.left = rect.right + 'px';
+                tooltip.style.top = rect.top + 'px';
+                tooltip.style.display = 'block';
+                this.tooltip = tooltip;
             });
-            
-            logo.addEventListener("mouseleave", () => {
-                tooltip.style.display = "none";
+            logo.addEventListener('mouseleave', function() {
+                if (this.tooltip) {
+                    this.tooltip.remove();
+                    this.tooltip = null;
+                }
             });
-            
-            container.appendChild(logo);
         });
     </script>
 </body>
