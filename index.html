@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Logos</title>
+    <style>
+        body {
+            position: relative;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f4f4f4;
+        }
+        .logo {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            display: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        const companies = [
+            { name: "Company A", img: "logo1.png", description: "Company A specializes in tech solutions." },
+            { name: "Company B", img: "logo2.png", description: "Company B focuses on renewable energy." },
+            { name: "Company C", img: "logo3.png", description: "Company C is a leader in AI research." }
+        ];
+
+        const container = document.getElementById("container");
+        companies.forEach(company => {
+            let logo = document.createElement("img");
+            logo.src = company.img;
+            logo.alt = company.name;
+            logo.className = "logo";
+            logo.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            logo.style.top = Math.random() * (window.innerHeight - 100) + "px";
+            
+            let tooltip = document.createElement("div");
+            tooltip.className = "tooltip";
+            tooltip.innerText = company.description;
+            document.body.appendChild(tooltip);
+            
+            logo.addEventListener("mouseenter", (e) => {
+                tooltip.style.display = "block";
+                tooltip.style.left = e.pageX + 10 + "px";
+                tooltip.style.top = e.pageY + 10 + "px";
+            });
+            
+            logo.addEventListener("mouseleave", () => {
+                tooltip.style.display = "none";
+            });
+            
+            container.appendChild(logo);
+        });
+    </script>
+</body>
+</html>
