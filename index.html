@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Circles</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             position: relative;
         }
         .container {
             position: relative;
-            width: 80vw;
+            width: 80vh;
             height: 80vh;
             display: flex;
             justify-content: center;
@@ -28,26 +30,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            aspect-ratio: 1 / 1;
         }
         .large {
-            width: 70%;
-            height: 70%;
-            background-color: yellow;
+            width: 110%;
+            height: 110%;
+            background-color: #fffce0;
         }
         .medium {
-            width: 50%;
-            height: 50%;
-            background-color: orange;
+            width: 75%;
+            height: 75%;
+            background-color: #ffe4c4;
         }
         .small {
-            width: 30%;
-            height: 30%;
-            background-color: red;
+            width: 60%;
+            height: 60%;
+            background-color: #ffc8c8;
         }
         .label {
             position: absolute;
-            top: -20px;
-            font-weight: bold;
+            top: 5px;
+            font-weight: 600;
+            font-size: 14px;
         }
         .half {
             position: absolute;
@@ -57,11 +61,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
+            
         }
-        .left { left: 0; background-color: rgba(0, 0, 0, 0.1); }
-        .right { right: 0; background-color: rgba(0, 0, 0, 0.2); }
+        .left { left: 0; background-color: rgba(0, 0, 0, 0.1); justify-content: flex-start; padding-left: 20px; }
+        .right { right: 0; background-color: rgba(0, 0, 0, 0.2); justify-content: flex-end; padding-right: 20px; }
         .logo {
             position: absolute;
             width: 50px;
@@ -82,6 +87,7 @@
     <div class="container">
         <div class="circle large">
             <div class="label">Global</div>
+            <img src="images/global_logo.png" class="logo" data-description="A global company" style="top: 100px; left: 150px;">
             <div class="circle medium">
                 <div class="label">National</div>
                 <div class="circle small">
