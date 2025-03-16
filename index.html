@@ -32,6 +32,7 @@
       justify-content: center;
       align-items: center;
       aspect-ratio: 1 / 1;
+      overflow: hidden; /* ensures content stays within the circle */
     }
     .large {
       width: 110%;
@@ -129,41 +130,4 @@
         <img src="images/national_logo7.png" class="logo" data-title="National Logo 7" data-description="Description for National Logo 7" style="right: 10%; top: 85%;">
         
         <!-- Small Circle (Local) -->
-        <div class="circle small">
-          <div class="label">Local</div>
-          <!-- 7 Logos for Local Circle -->
-          <!-- Left side logos (3) -->
-          <img src="images/local_logo1.png" class="logo" data-title="Local Logo 1" data-description="Description for Local Logo 1" style="left: 10%; top: 20%;">
-          <img src="images/local_logo2.png" class="logo" data-title="Local Logo 2" data-description="Description for Local Logo 2" style="left: 10%; top: 45%;">
-          <img src="images/local_logo3.png" class="logo" data-title="Local Logo 3" data-description="Description for Local Logo 3" style="left: 10%; top: 70%;">
-          <!-- Right side logos (4) -->
-          <img src="images/local_logo4.png" class="logo" data-title="Local Logo 4" data-description="Description for Local Logo 4" style="right: 10%; top: 15%;">
-          <img src="images/local_logo5.png" class="logo" data-title="Local Logo 5" data-description="Description for Local Logo 5" style="right: 10%; top: 40%;">
-          <img src="images/local_logo6.png" class="logo" data-title="Local Logo 6" data-description="Description for Local Logo 6" style="right: 10%; top: 65%;">
-          <img src="images/local_logo7.png" class="logo" data-title="Local Logo 7" data-description="Description for Local Logo 7" style="right: 10%; top: 85%;">
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    document.querySelectorAll('.logo').forEach(logo => {
-      let tooltip = document.createElement('div');
-      tooltip.classList.add('tooltip');
-      document.body.appendChild(tooltip);
-      
-      logo.addEventListener('mouseenter', function(e) {
-        const title = logo.getAttribute('data-title') || '';
-        const description = logo.getAttribute('data-description') || '';
-        tooltip.innerHTML = "<strong>" + title + "</strong><br>" + description;
-        tooltip.style.display = 'block';
-        tooltip.style.left = e.pageX + 10 + 'px';
-        tooltip.style.top = e.pageY + 10 + 'px';
-      });
-      
-      logo.addEventListener('mouseleave', function() {
-        tooltip.style.display = 'none';
-      });
-    });
-  </script>
-</body>
-</html>
+        <div
