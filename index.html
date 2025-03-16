@@ -90,18 +90,19 @@
       font-size: 110px;
     }
     .tooltip {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 8px;
-      border-radius: 5px;
-      font-size: 14px;
-      display: none;
-      pointer-events: none;
- max-width: 250px; 
+       position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: none;
+  pointer-events: none;
+  max-width: 250px; 
   word-wrap: break-word;
   text-align: left;
   line-height: 1.4;
+  z-index: 1000; /* Ensure it appears above other elements */
     }
   </style>
 </head>
@@ -156,23 +157,48 @@
   </div>
   <script>
     document.querySelectorAll('.logo').forEach(logo => {
-      let tooltip = document.createElement('div');
-      tooltip.classList.add('tooltip');
-      document.body.appendChild(tooltip);
-      
-      logo.addEventListener('mouseenter', function(e) {
-        const title = logo.getAttribute('data-title') || '';
-        const description = logo.getAttribute('data-description') || '';
-        tooltip.innerHTML = "<strong>" + title + "</strong><br>" + description;
-        tooltip.style.display = 'block';
-        tooltip.style.left = e.pageX + 10 + 'px';
-        tooltip.style.top = e.pageY + 10 + 'px';
-      });
-      
-      logo.addEventListener('mouseleave', function() {
-        tooltip.style.display = 'none';
-      });
-    });
+  let tooltip = document.createElement('div');
+  tooltip.classList.add('tooltip');
+  document.body.appendChild(tooltip);
+  
+  logo.addEventListener('mouseenter', function(e) {
+    const title = logo.getAttribute('data-title') || '';
+    const description = logo.getAttribute('data-description') || '';
+    tooltip.innerHTML = "<strong>" + title + "</strong><br>" + description;
+    tooltip.style.display = 'block';
+    
+    // Get tooltip dimensions after content is added
+    const tooltipWidth = tooltip.offsetWidth;
+    const tooltipHeight = tooltip.offsetHeight;
+    
+    // Calculate viewport boundaries
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Initial position
+    let left = e.pageX + 10;
+    let top = e.pageY + 10;
+    
+    // Adjust horizontal position if needed
+    if (left + tooltipWidth > viewportWidth - 10) {
+      left = e.pageX - tooltipWidth - 10; // Move to left side of cursor
+    }
+    
+    // Adjust vertical position if needed
+    if (top + tooltipHeight > viewportHeight - 10) {
+      top = e.pageY - tooltipHeight - 10; // Move above cursor
+    }
+    
+    // Apply final position
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  });
+  
+  logo.addEventListener('mouseleave', function() {
+    tooltip.style.display = 'none';
+  });
+});
   </script>
+
 </body>
 </html>
