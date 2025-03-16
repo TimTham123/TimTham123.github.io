@@ -1,121 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callum's Industry Breakdown Website</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            background-color: #f4f4f4;
-        }
-        .container {
-            position: relative;
-            width: 80vh;
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            aspect-ratio: 1 / 1;
-        }
-        .large {
-            width: 110%;
-            height: 110%;
-            background-color: #fffce0;
-        }
-        .medium {
-            width: 75%;
-            height: 75%;
-            background-color: #ffe4c4;
-        }
-        .small {
-            width: 60%;
-            height: 60%;
-            background-color: #ffc8c8;
-        }
-        .label {
-            position: absolute;
-            top: 5px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .half {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            font-weight: bold;
-        }
-        .left { left: 0; background-color: rgba(0, 0, 0, 0.1); justify-content: flex-start; padding-left: 20px; }
-        .right { right: 0; background-color: rgba(0, 0, 0, 0.2); justify-content: flex-end; padding-right: 20px; }
-        .logo {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-        }
-        .tooltip {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 14px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callum's Industry Breakdown Website</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      background-color: #f4f4f4;
+    }
+    .container {
+      position: relative;
+      width: 80vh;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 1 / 1;
+    }
+    .large {
+      width: 110%;
+      height: 110%;
+      background-color: #fffce0;
+    }
+    .medium {
+      width: 75%;
+      height: 75%;
+      background-color: #ffe4c4;
+    }
+    .small {
+      width: 60%;
+      height: 60%;
+      background-color: #ffc8c8;
+    }
+    .label {
+      position: absolute;
+      top: 5px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .logo {
+      position: absolute;
+      width: 40px; /* adjust logo size as needed */
+      height: 40px;
+      cursor: pointer;
+    }
+    .half {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+    .half.left {
+      left: 0;
+      background-color: #333; /* deep grey */
+      color: #fff;
+      justify-content: flex-end; /* positions text near the inner edge */
+      padding-right: 20px;
+      font-size: 32px;
+    }
+    .half.right {
+      right: 0;
+      background-color: #ccc; /* lighter grey */
+      justify-content: flex-start; /* positions text near the inner edge */
+      padding-left: 20px;
+      font-size: 32px;
+    }
+    .tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: none;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="half left">Sound</div>
-    <div class="half right">Games</div>
-    <div class="container">
-        <div class="circle large">
-            <div class="label">Global</div>
-            <img src="images/global_logo.png" class="logo" data-description="A gamin company" style="top: 100px; left: 150px;">
-            <div class="circle medium">
-                <div class="label">National</div>
-                <div class="circle small">
-                    <div class="label">Local</div>
-                </div>
-            </div>
+  <div class="half left">Sound</div>
+  <div class="half right">Games</div>
+  <div class="container">
+    <!-- Large Circle (Global) -->
+    <div class="circle large">
+      <div class="label">Global</div>
+      <!-- 7 Logos for Global Circle -->
+      <!-- Left side logos (3) -->
+      <img src="images/global_logo1.png" class="logo" data-title="Global Logo 1" data-description="Description for Global Logo 1" style="left: 10%; top: 20%;">
+      <img src="images/global_logo2.png" class="logo" data-title="Global Logo 2" data-description="Description for Global Logo 2" style="left: 10%; top: 45%;">
+      <img src="images/global_logo3.png" class="logo" data-title="Global Logo 3" data-description="Description for Global Logo 3" style="left: 10%; top: 70%;">
+      <!-- Right side logos (4) -->
+      <img src="images/global_logo4.png" class="logo" data-title="Global Logo 4" data-description="Description for Global Logo 4" style="right: 10%; top: 15%;">
+      <img src="images/global_logo5.png" class="logo" data-title="Global Logo 5" data-description="Description for Global Logo 5" style="right: 10%; top: 40%;">
+      <img src="images/global_logo6.png" class="logo" data-title="Global Logo 6" data-description="Description for Global Logo 6" style="right: 10%; top: 65%;">
+      <img src="images/global_logo7.png" class="logo" data-title="Global Logo 7" data-description="Description for Global Logo 7" style="right: 10%; top: 85%;">
+      
+      <!-- Medium Circle (National) -->
+      <div class="circle medium">
+        <div class="label">National</div>
+        <!-- 7 Logos for National Circle -->
+        <!-- Left side logos (3) -->
+        <img src="images/national_logo1.png" class="logo" data-title="National Logo 1" data-description="Description for National Logo 1" style="left: 10%; top: 20%;">
+        <img src="images/national_logo2.png" class="logo" data-title="National Logo 2" data-description="Description for National Logo 2" style="left: 10%; top: 45%;">
+        <img src="images/national_logo3.png" class="logo" data-title="National Logo 3" data-description="Description for National Logo 3" style="left: 10%; top: 70%;">
+        <!-- Right side logos (4) -->
+        <img src="images/national_logo4.png" class="logo" data-title="National Logo 4" data-description="Description for National Logo 4" style="right: 10%; top: 15%;">
+        <img src="images/national_logo5.png" class="logo" data-title="National Logo 5" data-description="Description for National Logo 5" style="right: 10%; top: 40%;">
+        <img src="images/national_logo6.png" class="logo" data-title="National Logo 6" data-description="Description for National Logo 6" style="right: 10%; top: 65%;">
+        <img src="images/national_logo7.png" class="logo" data-title="National Logo 7" data-description="Description for National Logo 7" style="right: 10%; top: 85%;">
+        
+        <!-- Small Circle (Local) -->
+        <div class="circle small">
+          <div class="label">Local</div>
+          <!-- 7 Logos for Local Circle -->
+          <!-- Left side logos (3) -->
+          <img src="images/local_logo1.png" class="logo" data-title="Local Logo 1" data-description="Description for Local Logo 1" style="left: 10%; top: 20%;">
+          <img src="images/local_logo2.png" class="logo" data-title="Local Logo 2" data-description="Description for Local Logo 2" style="left: 10%; top: 45%;">
+          <img src="images/local_logo3.png" class="logo" data-title="Local Logo 3" data-description="Description for Local Logo 3" style="left: 10%; top: 70%;">
+          <!-- Right side logos (4) -->
+          <img src="images/local_logo4.png" class="logo" data-title="Local Logo 4" data-description="Description for Local Logo 4" style="right: 10%; top: 15%;">
+          <img src="images/local_logo5.png" class="logo" data-title="Local Logo 5" data-description="Description for Local Logo 5" style="right: 10%; top: 40%;">
+          <img src="images/local_logo6.png" class="logo" data-title="Local Logo 6" data-description="Description for Local Logo 6" style="right: 10%; top: 65%;">
+          <img src="images/local_logo7.png" class="logo" data-title="Local Logo 7" data-description="Description for Local Logo 7" style="right: 10%; top: 85%;">
         </div>
+      </div>
     </div>
-    <script>
-        document.querySelectorAll('.logo').forEach(logo => {
-            let tooltip = document.createElement('div');
-            tooltip.classList.add('tooltip');
-            tooltip.innerText = logo.getAttribute('data-description');
-            document.body.appendChild(tooltip);
-
-            logo.addEventListener('mouseenter', function(e) {
-                tooltip.style.display = 'block';
-                tooltip.style.left = e.pageX + 10 + 'px';
-                tooltip.style.top = e.pageY + 10 + 'px';
-            });
-
-            logo.addEventListener('mouseleave', function() {
-                tooltip.style.display = 'none';
-            });
-        });
-    </script>
+  </div>
+  <script>
+    document.querySelectorAll('.logo').forEach(logo => {
+      let tooltip = document.createElement('div');
+      tooltip.classList.add('tooltip');
+      document.body.appendChild(tooltip);
+      
+      logo.addEventListener('mouseenter', function(e) {
+        const title = logo.getAttribute('data-title') || '';
+        const description = logo.getAttribute('data-description') || '';
+        tooltip.innerHTML = "<strong>" + title + "</strong><br>" + description;
+        tooltip.style.display = 'block';
+        tooltip.style.left = e.pageX + 10 + 'px';
+        tooltip.style.top = e.pageY + 10 + 'px';
+      });
+      
+      logo.addEventListener('mouseleave', function() {
+        tooltip.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
